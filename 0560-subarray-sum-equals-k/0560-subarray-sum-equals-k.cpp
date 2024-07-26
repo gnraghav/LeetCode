@@ -1,21 +1,18 @@
 class Solution {
 public:
-    int subarraySum(vector<int>& arr, int k) {
-        int n = arr.size();
-        int ans = 0;
-        for(int i = 0; i < n; i++)
+    int subarraySum(vector<int>& nums, int k) {
+        int count = 0;
+        int sum = 0;
+        for(int i = 0; i < nums.size(); i++)
         {
-            int sum = arr[i];
-            if(sum == k)
-                ans++;
-            
-            for(int j = i + 1; j < n; j++)
+            sum = nums[i];
+            count += ((sum == k) ? 1 : 0);
+            for(int j = i + 1; j < nums.size(); j++)
             {
-                sum += arr[j];
-                if(sum == k)
-                    ans++;
+                sum += nums[j];
+                count += ((sum == k) ? 1 : 0);
             }   
         }
-        return ans;
+        return count;
     }
 };
