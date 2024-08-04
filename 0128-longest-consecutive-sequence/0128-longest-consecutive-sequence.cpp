@@ -5,9 +5,8 @@ public:
             return 0;
         }
         
-        set<int> s;
-        map<int, bool> mp;
-        vector<int> n;
+        set<int> s; // to keep track of unique element
+        map<int, bool> mp; //  for faster finding the element
         for (auto i: nums) {
             s.insert(i);
             mp[i] = true;
