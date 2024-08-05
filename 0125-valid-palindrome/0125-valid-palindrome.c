@@ -27,20 +27,22 @@ bool isPalindrome(char* s) {
         return true;
     }
     char s1[len+1];
-    char s2[len+1];
-    int j =0; 
+    int j = 0;
+    int i;
     for (int i=0;i<len;i++) {
          if (isalnumeric(s[i])) {
              s1[j++] = tolower(s[i]);
          }
     }
     s1[j] = '\0';
-    strcpy(s2, s1);
-    reverse_string(s2, strlen(s2));
-    for (int i=0;i<strlen(s1);i++) {
-        if (s1[i] != s2[i]) {
+    i = 0;
+    j = strlen(s1)-1;
+    while (i<=j) {
+        if (s1[i] != s1[j]) {
             return false;
         }
+        i++;
+        j--;
     }
     return true;
 }
