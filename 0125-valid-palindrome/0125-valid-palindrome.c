@@ -37,8 +37,6 @@ bool isPalindrome(char* s) {
     s1[j] = '\0';
     strcpy(s2, s1);
     reverse_string(s2, strlen(s2));
-    printf("s1: %s\n", s1);
-    printf("s2: %s\n", s2);
     for (int i=0;i<strlen(s1);i++) {
         if (s1[i] != s2[i]) {
             return false;
