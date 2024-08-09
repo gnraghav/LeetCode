@@ -1,60 +1,33 @@
-// class Solution {
-// public:
-//     bool checkInclusion(string s1, string s2) {
-//         unordered_map<char, int> mp;
-//         for (auto i: s1) {
-//             mp[i]++;
-//         }
-//         int count = 0;
-//         for (auto i: s2) {
-//             if (count == s1.size()) {
-//                 break;
-//             }
-//             if (mp.count(i)) {
-//                 if (mp[i] > 1) {
-//                     mp[i]--;
-//                 } else {
-//                     mp.erase(i);
-//                 }
-//                 count++;
-//             } else {
-//                 count = 0;
-//             }
-//         }
-//         return (count == s1.size());    
-//     }
-// };
-
 class Solution {
-    bool areVectorsEqual(vector<int> a, vector<int> b){
-        for(int i=0; i<26; i++){
-            if(a[i]!=b[i]) return false;
-        }
-        return true;
-    }
 public:
     bool checkInclusion(string s1, string s2) {
-        if(s2.size()<s1.size()) return false;
-        vector<int> freqS1(26, 0);
-        for(char c: s1) freqS1[c-'a']++;
-        
-        vector<int> freqS2(26, 0);
-        int i=0, j=0;
-        
-        while(j<s2.size()){
-            freqS2[s2[j]-'a']++;
-            
-            if(j-i+1==s1.size()){
-                if(areVectorsEqual(freqS1, freqS2)) return true;
+        if (s1.size() > s2.size()) return false;
+
+        unordered_map<char, int> mp;
+        for (char c : s1) {
+            mp[c]++;
+        }
+
+        int left = 0, right = 0, count = s1.size();
+
+        while (right < s2.size()) {
+            if (mp[s2[right]] > 0) {
+                count--;
             }
-            
-            if(j-i+1<s1.size()) j++;
-            else{
-                freqS2[s2[i]-'a']--;
-                i++;
-                j++;
+            mp[s2[right]]--;
+            right++;
+
+            if (count == 0) return true;
+
+            if (right - left == s1.size()) {
+                if (mp[s2[left]] >= 0) {
+                    count++;
+                }
+                mp[s2[left]]++;
+                left++;
             }
         }
+
         return false;
     }
 };
