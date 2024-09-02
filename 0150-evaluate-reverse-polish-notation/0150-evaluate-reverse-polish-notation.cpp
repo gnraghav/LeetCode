@@ -4,6 +4,8 @@ public:
         stack<int> st;
         for (auto i: tokens) {
             if ((i!="+") && (i!="-") && (i!="/") && (i!="*"))  {
+                // avoid using stoi, safely use strtol for error checking.
+                // long num = std::strtol(i.c_str(), &ch, 10);
                 st.push(stoi(i));
             } else if (st.size() >= 2){
                 int d1 = st.top();
