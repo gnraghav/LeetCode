@@ -6,11 +6,8 @@ public:
         int mid;
         
         while(low<high) {
-            if (nums[low] < nums[high]) {
-                return nums[low];
-            }
             mid = (low+high)/2;
-            if (nums[low]<=nums[mid]) {
+            if (nums[mid]>nums[high]) {
                 low = mid+1;
             } else {
                 high = mid;
