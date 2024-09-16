@@ -12,7 +12,6 @@ public:
         if (!head || !head->next) {
             return false;
         }
-        
         ListNode *slow = head;
         ListNode *fast = head;
 
