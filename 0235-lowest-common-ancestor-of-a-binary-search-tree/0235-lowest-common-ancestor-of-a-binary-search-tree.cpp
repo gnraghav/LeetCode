@@ -11,6 +11,7 @@
 class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        // Soln 1:
         // if ((root->val > p->val && root->val < q->val) || 
         //     (root->val < p->val && root->val > q->val)) {
         //     return root;
@@ -22,12 +23,27 @@ public:
         //     return lowestCommonAncestor(root->right, p, q);
         // }
         // return (root->val == p->val ? p : q);
-        if (root->val < p->val && root->val < q->val) {
-            return lowestCommonAncestor(root->right, p, q);
-        }
-        if (root->val > p->val && root->val > q->val) {
-            return lowestCommonAncestor(root->left, p , q);
-        }
-        return root;
+        
+        // Soln 2:
+        // if (root->val < p->val && root->val < q->val) {
+        //     return lowestCommonAncestor(root->right, p, q);
+        // }
+        // if (root->val > p->val && root->val > q->val) {
+        //     return lowestCommonAncestor(root->left, p , q);
+        // }
+        // return root;
+        
+        //Soln3:
+         TreeNode *curr = root;
+         while(1) {
+             if (curr->val < p->val && curr->val < q->val) {
+                 curr = curr->right;
+             } else if (curr->val > p->val && curr->val > q->val) {
+                 curr = curr->left;
+             } else {
+                 break;
+             }
+         }
+         return curr;
     }
 };
